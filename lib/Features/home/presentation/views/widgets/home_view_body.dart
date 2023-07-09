@@ -1,7 +1,7 @@
+import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/best_sellerr_list_view.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/featured_books_list_view.dart';
 import 'package:bookly_app_tharwat/core/utils/styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -9,19 +9,21 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CutomAppBar(),
         FeaturedBooksListView(),
         Padding(
-          padding: EdgeInsets.only(left: 24.0, top: 40.0),
+          padding: EdgeInsets.only(left: 30.0, top: 40.0, bottom: 20.0),
           child: Text(
             'Best Seller',
-            style: Styles.mediamTitle,
+            style: Styles.textStyle18,
           ),
         ),
+        BestsellerListView(),
       ],
     );
   }
 }
+
