@@ -1,5 +1,4 @@
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/custom_app_bar.dart';
-import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/feature_list_view_item.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/featured_books_list_view.dart';
 import 'package:bookly_app_tharwat/core/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
