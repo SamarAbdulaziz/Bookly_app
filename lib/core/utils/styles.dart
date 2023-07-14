@@ -28,7 +28,7 @@ abstract class Styles {
       fontFamily: kGTSectraFine
   );
   static const textStyle16GilroyBold = TextStyle(
-    fontSize: 30.0,
+    fontSize: 16.0,
     fontWeight: FontWeight.bold,
       fontFamily: 'Gilroy'//todo add the font
   );
