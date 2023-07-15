@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../constants.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({
+class BooksListViewItem extends StatelessWidget {
+  const BooksListViewItem({
     super.key,
   });
 
@@ -19,7 +19,7 @@ class BestSellerListViewItem extends StatelessWidget {
       },
       child: Container(
         height: 130.0,
-        margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        // margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           //mainAxisAlignment: MainAxisAlignment.spaceAround,
