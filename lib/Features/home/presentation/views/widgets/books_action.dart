@@ -16,7 +16,7 @@ class BooksAction extends StatelessWidget {
         children: [
           CustomButton(
             backgroundColor: Colors.white,
-            text: '19.99 € €',
+            text: '19.99 €',
             style: Styles.textStyle18.copyWith(
               color: Colors.black,
               fontWeight: FontWeight.w900,
