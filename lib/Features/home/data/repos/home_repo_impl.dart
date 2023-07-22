@@ -21,9 +21,8 @@ class HomeRepoImplementation extends HomeRepo {
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
       } //better for perrformance
-      // data['items']
-      //     .map((item) => books.add(BookModel.fromJson(item)))
-      //     .toList(); //working
+
+      //data['items'].map((item) => books.add(BookModel.fromJson(item))).toList(); //working
       //data['items'].forEach((element)=>books.add(BookModel.fromJson(element)));//working
       print(data['totalItems']);//200
       print(books[1].id);//R6DAi96kKGAC
