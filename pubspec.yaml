@@ -35,7 +35,8 @@ dependencies:
   go_router:
   equatable:
   dartz:
-  dio: 
+  dio:
+  flutter_bloc:
 
 
   # The following adds the Cupertino Icons font to your application.
