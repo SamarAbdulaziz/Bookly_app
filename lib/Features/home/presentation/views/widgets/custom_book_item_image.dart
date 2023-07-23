@@ -1,11 +1,10 @@
-import 'package:bookly_app_tharwat/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
 class CustomBookItemImage extends StatelessWidget {
   const CustomBookItemImage({
-    super.key,
+    super.key, required this.imageUrl,
   });
-
+final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,8 +16,8 @@ class CustomBookItemImage extends StatelessWidget {
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(16.0),
                 image: DecorationImage(
-                  image: AssetImage(
-                    AssetsData.testImage,
+                  image: NetworkImage(
+                    imageUrl,
                   ),
                   fit: BoxFit.fill,
                 )),
