@@ -37,7 +37,8 @@ dependencies:
   dartz:
   dio:
   flutter_bloc:
-  get_it: 
+  get_it:
+  cached_network_image:
 
 
   # The following adds the Cupertino Icons font to your application.
