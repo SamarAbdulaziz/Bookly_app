@@ -12,9 +12,9 @@ class NewestBooksInitial extends NewestBooksState {}
 class NewestBooksLoading extends NewestBooksState {}
 
 class NewestBooksSuccess extends NewestBooksState {
-  final List<BookModel> newBooks;
+  final List<BookModel> books;
 
-  const NewestBooksSuccess(this.newBooks);
+  const NewestBooksSuccess(this.books);
 }
 
 class NewestBooksFailure extends NewestBooksState {
