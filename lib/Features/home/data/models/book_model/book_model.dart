@@ -1,5 +1,5 @@
 import 'package:bookly_app_tharwat/Features/home/domain/entities/book_entity.dart';
-import 'package:equatable/equatable.dart';
+//import 'package:equatable/equatable.dart';
 
 import 'access_info.dart';
 import 'sale_info.dart';
