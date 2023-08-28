@@ -8,18 +8,21 @@ import 'package:bookly_app_tharwat/core/utils/service_locator/service_locator.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main()async {
   // Dio dio=Dio();
   // ApiService apiService=ApiService(dio);
   // HomeRepoImplementation mm=HomeRepoImplementation(apiService);
   // mm.fetchNewestBooks() ;
+  await Hive.initFlutter();
+  Hive.registerAdapter(BookEntityAdapter());
+  await Hive.openBox<BookEntity>(kFeaturedBox);
+  await Hive.openBox<BookEntity>(kNewestBox);
+
   setupServiceLocator();
   runApp(const BooklyApp());
-  Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kFeaturedBox);
-}
+  }
 
 class BooklyApp extends StatelessWidget {
   const BooklyApp({super.key});
