@@ -31,7 +31,7 @@ class BooksListViewItem extends StatelessWidget {
           children: [
             SizedBox(
               child: NewestBooksImage(
-                imageUrl: book.volumeInfo.imageLinks!.thumbnail,
+                imageUrl: book.volumeInfo!.imageLinks!.thumbnail,
               ),
             ),
             const SizedBox(
@@ -46,7 +46,7 @@ class BooksListViewItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
                       // 'Harry Potter and the Goblet of Fire',
-                      book.volumeInfo.title,
+                      book.volumeInfo!.title,
                       style: Styles.textStyle20
                           .copyWith(fontFamily: kGTSectraFine),
                       maxLines: 2,
@@ -57,7 +57,7 @@ class BooksListViewItem extends StatelessWidget {
                     height: 3.0,
                   ),
                   Text(
-                    book.volumeInfo.authors![0],
+                    book.volumeInfo!.authors![0],
                     style: Styles.textStyle14.copyWith(
                       fontWeight: FontWeight.w500,
                       color: Colors.white70,
