@@ -1,4 +1,4 @@
-import 'package:bookly_app_tharwat/Features/home/data/models/book_model/book_model.dart';
+import 'package:bookly_app_tharwat/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly_app_tharwat/core/utils/app_router.dart';
 import 'package:bookly_app_tharwat/core/utils/styles.dart';
@@ -14,7 +14,7 @@ class BooksListViewItem extends StatelessWidget {
     required this.book,
   });
 
-  final BookModel book;
+  final BookEntity book;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class BooksListViewItem extends StatelessWidget {
           children: [
             SizedBox(
               child: NewestBooksImage(
-                imageUrl: book.volumeInfo!.imageLinks!.thumbnail,
+                imageUrl: book.image??'',
               ),
             ),
             const SizedBox(
@@ -46,7 +46,7 @@ class BooksListViewItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
                       // 'Harry Potter and the Goblet of Fire',
-                      book.volumeInfo!.title,
+                      book.title??'',
                       style: Styles.textStyle20
                           .copyWith(fontFamily: kGTSectraFine),
                       maxLines: 2,
@@ -57,7 +57,7 @@ class BooksListViewItem extends StatelessWidget {
                     height: 3.0,
                   ),
                   Text(
-                    book.volumeInfo!.authors![0],
+                    book.authorName??'',
                     style: Styles.textStyle14.copyWith(
                       fontWeight: FontWeight.w500,
                       color: Colors.white70,

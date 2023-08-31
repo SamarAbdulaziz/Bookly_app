@@ -1,4 +1,4 @@
-import 'package:bookly_app_tharwat/Features/home/data/repos/home_repo_impll.dart';
+import 'package:bookly_app_tharwat/Features/home/data/repos/home_repo_impl.dart';
 import 'package:bookly_app_tharwat/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views_model(manager)/fetured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views_model(manager)/newest_books_cubit/newest_books_cubit.dart';
@@ -33,12 +33,12 @@ class BooklyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              FeatutredBooksCubit(getIt.get<HomeRepoImplementation>())
+              FeatutredBooksCubit(getIt.get<HomeRepoImpl>())
                 ..fetchFeatureBooks(),
         ),
         BlocProvider(
           create: (context) =>
-              NewestBooksCubit(getIt.get<HomeRepoImplementation>())
+              NewestBooksCubit(getIt.get<HomeRepoImpl>())
                 ..fetchNewestBooks(),
         ),
       ],

@@ -9,6 +9,27 @@ abstract class Failure {
 class ServerFailure extends Failure {
   ServerFailure(super.errMessage);
 
+  factory ServerFailure.fromDioErr2(DioException dioException) {
+    switch (dioException.type) {
+      case DioExceptionType.connectionTimeout:
+        return ServerFailure('connection timeout');
+      case DioExceptionType.sendTimeout:
+        return ServerFailure('sendTimeout');
+      case DioExceptionType.receiveTimeout:
+        return ServerFailure('receiveTimeout');
+      case DioExceptionType.badCertificate:
+        return ServerFailure('badCertificate');
+      case DioExceptionType.badResponse:
+        return ServerFailure('badResponse');
+      case DioExceptionType.cancel:
+        return ServerFailure('connection cancel');
+      case DioExceptionType.connectionError:
+        return ServerFailure('connectionError');
+      case DioExceptionType.unknown:
+        return ServerFailure('unknown');
+    }
+  }
+
   factory ServerFailure.fromDioError(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
@@ -20,7 +41,7 @@ class ServerFailure extends Failure {
       case DioExceptionType.cancel:
         return ServerFailure('Request cancelled');
       case DioExceptionType.unknown:
-        if (dioException.message?.contains('SocketException')??true) {
+        if (dioException.message?.contains('SocketException') ?? true) {
           //i think we dont need this line
           return ServerFailure('No internet connection');
         }

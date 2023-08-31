@@ -8,7 +8,7 @@ class CustomBookItemImage extends StatelessWidget {
     required this.imageUrl,
   });
 
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CustomBookItemImage extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
             child: CachedNetworkImage(
-              imageUrl: imageUrl,
+              imageUrl: imageUrl??'',
               placeholder: (context, url) =>
                   const Center(child: CupertinoActivityIndicator()),
               errorWidget: (context, url, error) => const Icon(Icons.error),
