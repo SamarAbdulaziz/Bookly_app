@@ -7,13 +7,15 @@ import 'package:bookly_app_tharwat/core/widgets/custom_widget_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../home/domain/usecases/fetch_newest_books_usecase.dart';
+
 class SearchResultListView extends StatelessWidget {
   const SearchResultListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(//todo its not the correct cubit
-      create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>()),
+      create: (context) => NewestBooksCubit(FetchNewestBooksUseCase(getIt.get<HomeRepoImpl>())),
       child: BlocBuilder<NewestBooksCubit, NewestBooksState>(
         builder: (context, state) {
           if(state is NewestBooksSuccess){return ListView.builder(

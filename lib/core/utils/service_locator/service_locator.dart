@@ -9,7 +9,9 @@ final GetIt getIt = GetIt.instance;
 
 void setupServiceLocator() {
   getIt.registerSingleton<Dio>(Dio());
-  getIt.registerSingleton<ApiService>(getIt.get<ApiService>());
+
+  getIt.registerSingleton<ApiService>(ApiService(getIt.get<Dio>()));
+
   //getIt.registerSingleton<HomeRepoImpl>( HomeRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(
       homeRemoteDataSource: HomeRemoteDataSourceImpl(getIt.get<ApiService>()),
