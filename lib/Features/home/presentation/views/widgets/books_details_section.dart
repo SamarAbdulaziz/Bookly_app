@@ -16,13 +16,14 @@ final BookEntity book;
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.17),
-          child: const CustomBookItemImage(imageUrl: "http://books.google.com/books/content?id=HK1MDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",),
+          child:  CustomBookItemImage(imageUrl: book.image,),
         ),
         const SizedBox(
           height: 45.0,
         ),
         Text(
           book.title??'',
+          textAlign:TextAlign.center,
           style: Styles.textStyle30.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(

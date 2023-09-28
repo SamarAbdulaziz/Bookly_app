@@ -1,4 +1,4 @@
-import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/books_detals_section.dart';
+import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/books_details_section.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/custombook_details_appbar.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/simillar_books_section.dart';
 import 'package:flutter/material.dart';

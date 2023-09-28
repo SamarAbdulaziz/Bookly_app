@@ -13,8 +13,8 @@ class NewestBooksListView extends StatelessWidget {
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
       builder: (context, state) {
         if (state is NewestBooksSuccess) {
-          print('from BestsellerListView');
-          print(state.books.length);
+          // print('from BestsellerListView');
+          // print(state.books.length);
           return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
