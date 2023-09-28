@@ -31,7 +31,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     var maxScrollList = _scrollController.position.maxScrollExtent;
     if (currentPosition >= 0.7 * maxScrollList) {
       BlocProvider.of<FeaturedBooksCubit>(context)
-          .fetchFeaturedBooks(pageNumber: 1);
+          .fetchFeaturedBooks(pageNumber: nextPage++);
     }
   }
 
@@ -39,13 +39,12 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
-      listener: (context,state){},
+      listener: (context, state) {},
       builder: (context, state) {
         if (state is FeaturedBooksSuccess) {
           return Padding(

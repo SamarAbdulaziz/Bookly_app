@@ -18,7 +18,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0}) async {
     var data = await apiService.get(
-        endPoint: 'volumes?Filtering=free-ebooks&q=subject:programming&startindex=${pageNumber*10}');
+        endPoint: 'volumes?Filtering=free-ebooks&q=programming&startIndex=${pageNumber * 10}');
+    //'volumes?Filtering=free-ebooks&q=subject:programming&startIndex=${pageNumber*10}'//my
+    //'volumes?Filtering=free-ebooks&q=programming&startIndex=${pageNumber * 10}'//tharwat
     List<BookEntity> books = gitBooksList(data);
     saveBooksData(books, kFeaturedBox);
 
