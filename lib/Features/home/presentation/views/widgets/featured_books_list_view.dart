@@ -1,9 +1,10 @@
 import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/custom_book_item_image.dart';
+import 'package:bookly_app_tharwat/Features/home/presentation/views/widgets/featured_books_list_view_loading_indecator.dart';
 import 'package:bookly_app_tharwat/Features/home/presentation/views_model(manager)/fetured_books_cubit/featured_books_cubit.dart';
+import 'package:bookly_app_tharwat/core/utils/functions/build_error_snackbar.dart';
 import 'package:bookly_app_tharwat/core/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/widgets/custom_widget_indicator.dart';
 import '../../../domain/entities/book_entity.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
@@ -53,15 +54,18 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
       listener: (context, state) {
-        if(state is FeaturedBooksSuccess ){
+        if (state is FeaturedBooksSuccess) {
           books.addAll(state.books);
+        }
+        if (state is FeaturedBooksPaginationFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(buildSnackBar(state.errMessage));
         }
       },
       builder: (context, state) {
         if (state is FeaturedBooksSuccess ||
-            state is FeaturedBooksPaginationLoading) {
-         
-
+            state is FeaturedBooksPaginationLoading ||
+            state is FeaturedBooksPaginationFailure) {
           return Padding(
             padding: const EdgeInsets.only(left: 30.0),
             child: SizedBox(
@@ -70,13 +74,13 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
                 controller: _scrollController,
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                itemCount:books.length,
-                  //  state is FeaturedBooksSuccess ? state.books.length : 0,
+                itemCount: books.length,
+                //  state is FeaturedBooksSuccess ? state.books.length : 0,
                 itemBuilder: (cont, index) => CustomBookItemImage(
-                    imageUrl:books[index].image,
-                    // state is FeaturedBooksSuccess
-                    //     ? state.books[index].image
-                    //     : '',
+                  imageUrl: books[index].image,
+                  // state is FeaturedBooksSuccess
+                  //     ? state.books[index].image
+                  //     : '',
                 ),
               ),
             ),
@@ -84,7 +88,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMsg);
         } else {
-          return const CustomWidgetIndicator();
+          return const FeaturedBooksListViewLoadingIndicator();
         }
       },
     );
