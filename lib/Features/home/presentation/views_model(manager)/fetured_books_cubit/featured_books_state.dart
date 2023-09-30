@@ -11,6 +11,7 @@ abstract class FeaturedBooksState extends Equatable {
 class FeaturedBooksInitial extends FeaturedBooksState {}
 
 class FeaturedBooksLoading extends FeaturedBooksState {}
+class FeaturedBooksPaginationLoading extends FeaturedBooksState {}
 
 class FeaturedBooksSuccess extends FeaturedBooksState {
   final List<BookEntity> books;

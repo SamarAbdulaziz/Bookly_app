@@ -4,6 +4,7 @@ import 'package:bookly_app_tharwat/core/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_widget_indicator.dart';
+import '../../../domain/entities/book_entity.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
   const FeaturedBooksListView({
@@ -17,6 +18,8 @@ class FeaturedBooksListView extends StatefulWidget {
 class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   late final ScrollController _scrollController;
   int nextPage = 1;
+  bool isLoading = false;
+  List<BookEntity> books = [];
 
   @override
   void initState() {
@@ -26,12 +29,17 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     _scrollController.addListener(_scrollListener);
   }
 
-  void _scrollListener() {
+  void _scrollListener() async {
     var currentPosition = _scrollController.position.pixels;
     var maxScrollList = _scrollController.position.maxScrollExtent;
     if (currentPosition >= 0.7 * maxScrollList) {
-      BlocProvider.of<FeaturedBooksCubit>(context)
-          .fetchFeaturedBooks(pageNumber: nextPage++);
+      if (!isLoading) //(isLoading==false)
+      {
+        isLoading = true;
+        await BlocProvider.of<FeaturedBooksCubit>(context)
+            .fetchFeaturedBooks(pageNumber: nextPage++);
+        isLoading = false;
+      }
     }
   }
 
@@ -44,9 +52,16 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is FeaturedBooksSuccess ){
+          books.addAll(state.books);
+        }
+      },
       builder: (context, state) {
-        if (state is FeaturedBooksSuccess) {
+        if (state is FeaturedBooksSuccess ||
+            state is FeaturedBooksPaginationLoading) {
+         
+
           return Padding(
             padding: const EdgeInsets.only(left: 30.0),
             child: SizedBox(
@@ -55,9 +70,14 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
                 controller: _scrollController,
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                itemCount: state.books.length,
-                itemBuilder: (cont, index) =>
-                    CustomBookItemImage(imageUrl: state.books[index].image),
+                itemCount:books.length,
+                  //  state is FeaturedBooksSuccess ? state.books.length : 0,
+                itemBuilder: (cont, index) => CustomBookItemImage(
+                    imageUrl:books[index].image,
+                    // state is FeaturedBooksSuccess
+                    //     ? state.books[index].image
+                    //     : '',
+                ),
               ),
             ),
           );
